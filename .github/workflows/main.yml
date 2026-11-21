@@ -21,7 +21,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev automake
+          sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
 
       - name: Install Buildozer and Cython
         run: |
@@ -31,6 +31,7 @@ jobs:
       - name: Generate buildozer.spec
         run: |
           yes | buildozer init
+          sed -i 's/.*p4a.branch =.*/p4a.branch = v2024.01.21/' buildozer.spec
 
       - name: Build APK
         run: |
